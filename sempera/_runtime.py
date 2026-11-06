@@ -130,6 +130,9 @@ class SemperaCore:
         if body is not None:
             if op["body"] == "multipart":
                 payload, headers["Content-Type"] = _multipart(body)
+            elif op["body"] == "form":
+                payload = urllib.parse.urlencode({k: v for k, v in body.items() if v is not None}).encode()
+                headers["Content-Type"] = "application/x-www-form-urlencoded"
             else:
                 payload, headers["Content-Type"] = json.dumps(body).encode(), "application/json"
         # One key per logical request, reused by every retry, so a retry can never act twice.

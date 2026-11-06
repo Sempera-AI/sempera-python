@@ -1,5 +1,5 @@
 """GENERATED from the live Sempera OpenAPI document. Do not edit by hand; it is rewritten when the API changes.
-spec sha256 407e1e6661535ba651988eb9896c1ddf3f1250c492a0374bb6460ec8728d975f
+spec sha256 8549f43682bf85aca6a2e2cb56db001927fa4a7a8cd2e998bb97c82878949e9d
 """
 
 from __future__ import annotations
@@ -13,6 +13,9 @@ API_VERSION = "1.0.0"
 ERROR_CODES = ('AGENT_ENV_UNPINNED', 'CALL_RL_PLAN_ALLOWANCE', 'CALL_RL_PLAN_CONCURRENCY', 'CALL_RL_PLAN_DAILY', 'CALL_RL_PLAN_DAILY_MINUTES', 'CALL_RL_PLAN_HOURLY', 'PHONE_AGENT_UNPINNED', 'PHONE_APPROVAL_EXPIRED', 'PHONE_APPROVAL_INVALID', 'PHONE_APPROVAL_REQUIRED', 'PHONE_COST_UNKNOWN', 'PHONE_DESTINATION_BLOCKED', 'PHONE_FUNDING_NOT_LIVE', 'PHONE_NUMBER_MISSING', 'PHONE_OUTSIDE_HOURS', 'PHONE_PLAN_INACTIVE', 'PHONE_RECIPIENT_OPTED_OUT', 'SMS_RL_PLAN_ALLOWANCE', 'SMS_RL_PLAN_DAILY', 'SMS_RL_PLAN_HOURLY', 'authentication_required', 'capability_unavailable', 'conflict', 'credits_exhausted', 'credits_unavailable', 'csrf_failed', 'forbidden', 'gone', 'idempotency_key_reused', 'insufficient_scope', 'internal_error', 'invalid_credential', 'method_not_allowed', 'not_found', 'owner_setup_required', 'payload_too_large', 'provider_failed', 'provider_timeout', 'rate_limited', 'service_unavailable', 'validation_failed', 'workspace_suspended')
 
 OPERATIONS: dict[str, dict[str, Any]] = {
+    'get_oauth_authorization_server': {'method': 'GET', 'path': '/.well-known/oauth-authorization-server', 'path_params': [], 'query': [], 'idempotent': False, 'body': None, 'response': 'json'},
+    'get_oauth_protected_resource': {'method': 'GET', 'path': '/.well-known/oauth-protected-resource', 'path_params': [], 'query': [], 'idempotent': False, 'body': None, 'response': 'json'},
+    'get_oauth_protected_resource_mcp': {'method': 'GET', 'path': '/.well-known/oauth-protected-resource/v1/mcp', 'path_params': [], 'query': [], 'idempotent': False, 'body': None, 'response': 'json'},
     'get_doc_page': {'method': 'GET', 'path': '/docs/{page}', 'path_params': ['page'], 'query': [], 'idempotent': False, 'body': None, 'response': 'text'},
     'get_llms_txt': {'method': 'GET', 'path': '/llms.txt', 'path_params': [], 'query': [], 'idempotent': False, 'body': None, 'response': 'text'},
     'get_open_api': {'method': 'GET', 'path': '/openapi.json', 'path_params': [], 'query': [], 'idempotent': False, 'body': None, 'response': 'json'},
@@ -195,6 +198,11 @@ OPERATIONS: dict[str, dict[str, Any]] = {
     'reset_memory': {'method': 'POST', 'path': '/v1/memory/reset', 'path_params': [], 'query': [], 'idempotent': False, 'body': 'json', 'response': 'json'},
     'update_memory': {'method': 'PATCH', 'path': '/v1/memory/{memory_id}', 'path_params': ['memory_id'], 'query': [], 'idempotent': False, 'body': 'json', 'response': 'json'},
     'list_models_v1': {'method': 'GET', 'path': '/v1/models', 'path_params': [], 'query': [], 'idempotent': False, 'body': None, 'response': 'json'},
+    'authorize_oauth_client': {'method': 'GET', 'path': '/v1/oauth/authorize', 'path_params': [], 'query': ['client_id', 'redirect_uri', 'response_type', 'code_challenge', 'code_challenge_method', 'state', 'scope', 'resource'], 'idempotent': False, 'body': None, 'response': 'none'},
+    'register_oauth_client': {'method': 'POST', 'path': '/v1/oauth/register', 'path_params': [], 'query': [], 'idempotent': False, 'body': 'json', 'response': 'json'},
+    'exchange_oauth_token': {'method': 'POST', 'path': '/v1/oauth/token', 'path_params': [], 'query': [], 'idempotent': False, 'body': 'form', 'response': 'json'},
+    'list_operational_reviews': {'method': 'GET', 'path': '/v1/operational-reviews', 'path_params': [], 'query': [], 'idempotent': False, 'body': None, 'response': 'json'},
+    'create_operational_review': {'method': 'POST', 'path': '/v1/operational-reviews', 'path_params': [], 'query': [], 'idempotent': False, 'body': 'json', 'response': 'json'},
     'get_service_version': {'method': 'GET', 'path': '/v1/org/service-version', 'path_params': [], 'query': [], 'idempotent': False, 'body': None, 'response': 'json'},
     'update_service_version': {'method': 'PUT', 'path': '/v1/org/service-version', 'path_params': [], 'query': [], 'idempotent': False, 'body': 'json', 'response': 'json'},
     'list_service_versions': {'method': 'GET', 'path': '/v1/org/service-versions', 'path_params': [], 'query': [], 'idempotent': False, 'body': None, 'response': 'json'},
@@ -420,6 +428,36 @@ OPERATIONS: dict[str, dict[str, Any]] = {
 
 class Operations(SemperaCore):
     """One method per operation in the OpenAPI document."""
+
+    def get_oauth_authorization_server(self, *, request_options: dict[str, Any] | None = None) -> Any:
+        """Authorization server metadata (GET /.well-known/oauth-authorization-server)"""
+        return self._call(
+            OPERATIONS['get_oauth_authorization_server'],
+            {},
+            None,
+            None,
+            request_options,
+        )
+
+    def get_oauth_protected_resource(self, *, request_options: dict[str, Any] | None = None) -> Any:
+        """Protected resource metadata (GET /.well-known/oauth-protected-resource)"""
+        return self._call(
+            OPERATIONS['get_oauth_protected_resource'],
+            {},
+            None,
+            None,
+            request_options,
+        )
+
+    def get_oauth_protected_resource_mcp(self, *, request_options: dict[str, Any] | None = None) -> Any:
+        """Protected resource metadata for the MCP endpoint (GET /.well-known/oauth-protected-resource/v1/mcp)"""
+        return self._call(
+            OPERATIONS['get_oauth_protected_resource_mcp'],
+            {},
+            None,
+            None,
+            request_options,
+        )
 
     def get_doc_page(self, page: str, *, request_options: dict[str, Any] | None = None) -> Any:
         """A developer guide page (Markdown) (GET /docs/{page})"""
@@ -2237,6 +2275,56 @@ class Operations(SemperaCore):
             OPERATIONS['list_models_v1'],
             {},
             None,
+            None,
+            request_options,
+        )
+
+    def authorize_oauth_client(self, *, client_id: Any, redirect_uri: Any = None, response_type: Any, code_challenge: Any, code_challenge_method: Any, state: Any = None, scope: Any = None, resource: Any = None, request_options: dict[str, Any] | None = None) -> Any:
+        """Start an authorization (GET /v1/oauth/authorize)"""
+        return self._call(
+            OPERATIONS['authorize_oauth_client'],
+            {'client_id': client_id, 'redirect_uri': redirect_uri, 'response_type': response_type, 'code_challenge': code_challenge, 'code_challenge_method': code_challenge_method, 'state': state, 'scope': scope, 'resource': resource},
+            None,
+            None,
+            request_options,
+        )
+
+    def register_oauth_client(self, body, *, request_options: dict[str, Any] | None = None) -> Any:
+        """Register an OAuth client (POST /v1/oauth/register)"""
+        return self._call(
+            OPERATIONS['register_oauth_client'],
+            {},
+            body,
+            None,
+            request_options,
+        )
+
+    def exchange_oauth_token(self, body, *, request_options: dict[str, Any] | None = None) -> Any:
+        """Swap a code or refresh token (POST /v1/oauth/token)"""
+        return self._call(
+            OPERATIONS['exchange_oauth_token'],
+            {},
+            body,
+            None,
+            request_options,
+        )
+
+    def list_operational_reviews(self, *, request_options: dict[str, Any] | None = None) -> Any:
+        """Read operational evidence reviews (GET /v1/operational-reviews, scope workspaces:read)"""
+        return self._call(
+            OPERATIONS['list_operational_reviews'],
+            {},
+            None,
+            None,
+            request_options,
+        )
+
+    def create_operational_review(self, body, *, request_options: dict[str, Any] | None = None) -> Any:
+        """Record an operational evidence review (POST /v1/operational-reviews, scope workspaces:write)"""
+        return self._call(
+            OPERATIONS['create_operational_review'],
+            {},
+            body,
             None,
             request_options,
         )
