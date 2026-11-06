@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sempera"
+version = "0.1.0"
+description = "The official Python client for the Sempera API: a method for every operation, retries, idempotency keys, paging and webhook verification"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = []
+license = { text = "MIT" }
+authors = [{ name = "Sempera Labs, Inc.", email = "hello@sempera.org" }]
+keywords = ["sempera", "voice", "phone", "ai", "sdk"]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/Sempera-AI/sempera-python"
+Issues = "https://github.com/Sempera-AI/sempera-python/issues"
+
+[tool.setuptools]
+packages = ["sempera"]
